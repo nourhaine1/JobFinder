@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const UserController = require('./Controllers/UserController');
 
 const app = express();
 app.use(express.json());
@@ -11,11 +10,8 @@ mongoose.connect('mongodb://127.0.0.1:27017/JobFinder')
     .catch(err => console.log('Error connecting to MongoDB'));
 
 // Define routes using controller functions
-app.post('/user', UserController.createUser);
-app.get('/Users', UserController.getAllUsers);
-app.get('/Users/:id', UserController.getUserById);
-app.put('/Users/:id', UserController.updateUser);
-app.delete('/Users/:id', UserController.deleteUser);
+const user_routers = require('./routers/userRouter');
+app.use('/api',user_routers );
 
 // Start server
 app.listen(3000, () => {
