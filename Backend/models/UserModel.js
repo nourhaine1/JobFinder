@@ -1,44 +1,34 @@
 const mongoose=require('mongoose');
 const bcrypt=require ('bcrypt');
-const UserSchema = mongoose.Schema(
-    {
-        fullName: {
-            type: String,
-        },
-        description:{
-            type:String,
-        },
-        email: {
-            type:String,
-        },
-        password: 
-        {
-            type: String,
-        },
-        status: {
-            type: String,
-        },
-        location: {
-            type: String,
-        },
-        Birthday: {
-            type: Date,
-        },
-        skills: {
-            type: String,
-        },
-        logo: {
-            type: String,
-        },
-        cv: {
-            type: String,
-        }
+const Schema = mongoose.Schema
+const UserModel = new Schema({
+    fullName:String,
+    description:String,
+    email:String,
+    password: {
+        type: String,
+        required: true
     },
+    status:String,
+    adresse:String,
+    birthday:Date,
+    skills:String,
+    pdf:String,
+    /*  pdf: {
+        data: Buffer,   // Utilisation de Buffer pour stocker les données binaires du fichier
+        contentType: String,  // Stocke le type MIME du fichier (ex: 'application/pdf')
+        filename: String     // Nom du fichier original
+    },*/
+    image:String,
+    /*image: {
+        data: Buffer,
+        contentType: String,
+        filename: String
+    },*/
+})
+        
   
-)
-//creation de model
-// Before saving the user, hash the password
-UserSchema.pre('save', async function (next) {
+UserModel.pre('save', async function (next) {
     try {
         // Check if the password has been modified
         if (!this.isModified('password')) {
@@ -58,5 +48,5 @@ UserSchema.pre('save', async function (next) {
 });
 
 
-const User=mongoose.model('Users',UserSchema);
+const User=mongoose.model('Users',UserModel);
 module.exports=User;
