@@ -1,19 +1,42 @@
-const express = require('express');
-const mongoose = require('mongoose');
 
+const express = require('express');
+const logger = require('morgan');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 const app = express();
+const port = 3800;
+
+app.use(logger('dev'));
 app.use(express.json());
 
-// Connect to MongoDB
-mongoose.connect('mongodb://127.0.0.1:27017/JobFinder')
-    .then(() => console.log('Connected to MongoDB'))
-    .catch(err => console.log('Error connecting to MongoDB'));
+// bodyParser pour récupérer les données avec post/put
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-// Define routes using controller functions
+
+// pour utiliser les routes de job
+const job_routes = require('./routers/JobRouter.js');
+app.use('/api/jobs', job_routes);
+
+
+
+// pour utiliser les routes de company
+const company_routes = require('./routers/CompanyRouter.js');
+app.use('/api/companys', company_routes);
+
+// pour utiliser les routes de application
+const application_routes = require('./routers/ApplicationRouter.js');
+app.use('/api/applications', application_routes);
+// pour utiliser les routes de user
+
 const user_routers = require('./routers/userRouter');
 app.use('/api',user_routers );
 
-// Start server
-app.listen(3000, () => {
-    console.log(`Server is running on port 3000`);
-});
+// méthode pour se connecter à la base de données avec un fichier env
+require('dotenv').config();
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => app.listen(port, () => console.log(`server running on port ${port}`)))
+    .catch((error) => console.log('Error', error));
+
+
+
