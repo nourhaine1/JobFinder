@@ -30,7 +30,7 @@ app.use('/api/applications', application_routes);
 // pour utiliser les routes de user
 
 const user_routers = require('./routers/userRouter');
-app.use('/api',user_routers );
+app.use('/api/users',user_routers );
 
 // méthode pour se connecter à la base de données avec un fichier env
 require('dotenv').config();
