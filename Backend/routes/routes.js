@@ -49,4 +49,26 @@ router.post("/login", async(req, res) => {
     res.send("login user")
 })
 
+router.post("/user", async(req, res) => {
+    //res.send("user")
+    try {
+        const cookie = req.cookies['jwt']
+        const claims = jwt.verify(cookie, "secret")
+        if (!claims) {
+            return res.status(401).send({
+                message: "unauthenticated"
+            })
+        }
+
+        const user = await User.findOne({ _id: claims._id })
+        const { password, ...data } = await user.toJSON()
+        res.send(data)
+
+    } catch (err) {
+        return res.status(401).send({
+            message: 'unauthenticated'
+        })
+    }
+})
+
 module.exports = router
