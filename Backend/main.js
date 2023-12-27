@@ -1,6 +1,7 @@
 
 const express = require('express');
 const logger = require('morgan');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const app = express();
@@ -8,7 +9,7 @@ const port = 3800;
 
 app.use(logger('dev'));
 app.use(express.json());
-
+app.use(cors());
 // bodyParser pour récupérer les données avec post/put
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
