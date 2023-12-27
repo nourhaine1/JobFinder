@@ -3,7 +3,7 @@
 <div class="count-job mb-35">
     <span>Companies</span>
     </div>
-<div class="single-job-items mb-30" *ngFor="let company of companies">
+<div class="single-job-items mb-30" *ngFor="let company of getCurrentPageCompanies()">
     <div class="job-items">
         <div class="company-img">
             <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
@@ -22,5 +22,22 @@
     <div class="items-link items-link2 f-right">
         <a href="job_details.html">{{company.website}}</a>
         <span>{{company.description}}</span>
+    </div>
+</div>
+<div class="pagination-area pb-115 text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="single-wrap d-flex justify-content-center">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-start">
+                            <li class="page-item" *ngFor="let pageNumber of getPageNumbers()">
+                                <a class="page-link" (click)="changePage(pageNumber)">{{ pageNumber }}</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
