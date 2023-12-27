@@ -46,7 +46,29 @@ router.post('register', async(req, res) => {
 })
 
 router.post("/login", async(req, res) => {
-    res.send("login user")
+    //res.send("login user")
+    const user = await User.findOne({ email: req.body.email })
+    if (!user) {
+        return res.status(404).send({
+            message: "User Not Found"
+        })
+    }
+    if (!(await bcrypt.compare(req.body.password, user.password))) {
+        return res.status(400).send({
+            message: "Password Is Invalid"
+        })
+    }
+
+    const token = jwt.sign({ _id: user._id }, "secret key")
+
+    res.cookie("jwt", token, {
+        httpOnly: true,
+        maxAge: 24 * 60 * 60 * 1000 // for 1 day
+    })
+
+    res.send({
+        message: "success"
+    })
 })
 
 router.post("/user", async(req, res) => {
@@ -69,6 +91,14 @@ router.post("/user", async(req, res) => {
             message: 'unauthenticated'
         })
     }
+})
+
+router.post('/logout', (req, res) => {
+    res.cookie("jwt", "", { maxAge: 0 })
+
+    res.send({
+        message: "success"
+    })
 })
 
 module.exports = router
