@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { JobRoutingModule } from './job-routing.module';
 import { JobAddComponent } from './job-add/job-add.component';
+import { FindJobComponent } from './find-job/find-job.component';
 
 
 @NgModule({
   declarations: [
-    JobAddComponent
+    JobAddComponent,
+    FindJobComponent
   ],
   imports: [
     CommonModule,

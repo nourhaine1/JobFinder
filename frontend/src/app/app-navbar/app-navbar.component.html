@@ -17,7 +17,7 @@
                                 <nav class="d-none d-lg-block">
                                     <ul id="navigation">
                                         <li><a href="index.html">Home</a></li>
-                                        <li><a href="job_listing.html">Find a Jobs </a></li>
+                                        <li><a routerLink="/jobs/findjob">Find a Jobs </a></li>
                                         <li><a href="about.html">About</a></li>
                                         <li><a href="#">Page</a>
                                             <ul class="submenu">
@@ -33,8 +33,8 @@
                             </div>          
                             <!-- Header-btn -->
                             <div class="header-btn d-none f-right d-lg-block" *ngIf="authenticated==false">
-                                <a href="/users/register" class="btn head-btn1">Register</a>
-                                <a href="/users/login" class="btn head-btn2">Login</a> 
+                                <a routerLink="/users/register" class="btn head-btn1">Register</a>
+                                <a routerLink="/users/login" class="btn head-btn2">Login</a> 
                             </div>
 
                             <div class="header-btn d-none f-right d-lg-block" *ngIf="authenticated==true">
