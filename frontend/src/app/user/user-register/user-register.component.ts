@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../service/user.service';
 import { Router } from '@angular/router';
 
@@ -15,16 +15,27 @@ export class UserRegisterComponent implements OnInit {
 
   }
   form = this.formBuilder.group({
-    fullName: '',
+    fullName: ['', Validators.required],
     description: '',
-    email: '',
-    password: '',
-    status: '',  // <-- Initialize with an empty string
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(3)]],
+    status: ['', Validators.required],
     company: '', // <-- New FormControl for the company
-    adresse: '',
-    birthday: Date,
+    adresse: ['', Validators.required],
+    birthday: [null, Validators.required], // Assuming birthday is a required field
     skills: '',
   })
+
+  form2 = this.formBuilder.group({
+    retypepassword: new FormControl('', [Validators.required, this.passwordMatchValidator.bind(this)]),
+  });
+  
+  // Custom validator for password confirmation
+  passwordMatchValidator(control: FormControl): { [key: string]: boolean } | null {
+    const password = this.form.get('password')?.value;
+  
+    return control.value === password ? null : { a: true };
+  }
   ngOnInit(): void {
 
     this.userService.getUsers().subscribe(

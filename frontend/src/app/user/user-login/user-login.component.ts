@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../service/user.service';
 import { Router } from '@angular/router';
 import { Emitters } from 'src/app/emitters/emitters';
@@ -11,17 +11,16 @@ import { Emitters } from 'src/app/emitters/emitters';
 })
 export class UserLoginComponent implements OnInit {
 
-
+  error=false;
 
   constructor(private router:Router, private formBuilder: FormBuilder, private userService: UserService) {
 
   }
   form = this.formBuilder.group({
- 
-    email: '',
-    password: '',
-   
-  })
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(3)]],
+  });
+
   ngOnInit(): void {
 
   }
@@ -43,6 +42,7 @@ export class UserLoginComponent implements OnInit {
         },
         (error: Error) => {
           console.log(error)
+          this.error = true;
           Emitters.authEmitter.emit(false)
         }
       );
