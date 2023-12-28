@@ -6,11 +6,11 @@ export class Company{
 		website:String;
 		email:String;
 		location:String;
-		logo:String ;
+		logo:File|null ;
      constructor( company_id:number,company_name:String, secteur:string,description:String,website:String,
                 email:String,
                 location:String,
-                logo:String ){
+                logo:File ){
                     this.company_id=company_id;
                     this.company_name=company_name;
                     this.email=email;
