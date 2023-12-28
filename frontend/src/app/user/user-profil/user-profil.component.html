@@ -45,7 +45,7 @@
                         <tr>
                             <td>Birthday Date</td>
                             <td>:</td>
-                            <td>{{ user.birthday }}</td>
+                            <td>{{ user.birthday | date:'yyyy-MM-dd' | slice:0:10 }}</td>
                         </tr>
                         <tr>
                             <td>Status</td>

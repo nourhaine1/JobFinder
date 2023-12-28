@@ -29,7 +29,7 @@ export class JobService {
       options));
   }
 
-  getJobById = (id : number) : Observable<Job>=> {
+  getJobById = (id : any) : Observable<Job>=> {
     return this.http.get<Job>(`${this.baseUrl}/api/jobs/getJob/${id}`)
   }
 

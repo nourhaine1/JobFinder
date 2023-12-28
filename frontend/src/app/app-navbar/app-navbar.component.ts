@@ -9,31 +9,34 @@ import { Router } from '@angular/router';
   styleUrls: ['./app-navbar.component.css']
 })
 export class AppNavbarComponent implements OnInit {
-  authenticated=false
+  authenticated = false
 
-  constructor(private userservice:UserService,private router:Router) { }
-  
-  
-  
+  constructor(private userservice: UserService, private router: Router) { }
+
+
+
   ngOnInit(): void {
+    console.log(this.authenticated)
     Emitters.authEmitter.subscribe(
-  (auth:boolean)=>{
-    this.authenticated=auth
+      
+      (auth: boolean) => {
+        this.authenticated = auth
+        console.log(this.authenticated)
 
-  }
-  )
-}
-
-  logout() : void{
-
-    this.userservice.logout().subscribe(
-      (res:any)=> {
-        this.authenticated=false
       }
     )
-    
+  }
 
-}
+  logout(): void {
+
+    this.userservice.logout().subscribe(
+      (res: any) => {
+        this.authenticated = false
+      }
+    )
+
+
+  }
 
 
 }

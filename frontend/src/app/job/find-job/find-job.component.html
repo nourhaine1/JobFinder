@@ -70,7 +70,7 @@
                                         </div>
                                     </div>
                                     <div class="items-link items-link2 f-right">
-                                        <a href="job_details.html">{{job.job_type}}</a>
+                                        <a  [routerLink]="'/jobs/jobdetails/' + job._id">{{job.job_type}}</a>
                                         <span>{{ job.posted_date | date:'yyyy-MM-dd' | slice:0:10 }}</span>
                                     </div>
                                 </div>
