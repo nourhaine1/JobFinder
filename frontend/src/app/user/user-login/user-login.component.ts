@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder,FormGroup } from '@angular/forms';
 import { UserService } from '../service/user.service';
 import { Router } from '@angular/router';
 import { Emitters } from 'src/app/emitters/emitters';
@@ -13,14 +13,17 @@ export class UserLoginComponent implements OnInit {
 
 
 
-  constructor(private router:Router, private formBuilder: FormBuilder, private userService: UserService) {
+  constructor(
+    private router:Router,
+    private formBuilder: FormBuilder,
+    private userService: UserService) {
 
   }
   form = this.formBuilder.group({
- 
+
     email: '',
     password: '',
-   
+
   })
   ngOnInit(): void {
 
@@ -38,7 +41,7 @@ export class UserLoginComponent implements OnInit {
               this.router.navigate(['/users/profil'])
             },
             err =>{console.error(err)}
-          ) 
+          )
 
         },
         (error: Error) => {
