@@ -49,7 +49,7 @@
                                     </a>
                                     <ul>
                                         <li>{{company.company_name}}</li>
-                                        <li><i class="fas fa-map-marker-alt"></i>{{company.Location}}</li>
+                                        <li><i class="fas fa-map-marker-alt"></i>{{company.location}}</li>
                                         <li>{{job.salaire}} DT</li>
                                     </ul>
                                 </div>
@@ -104,8 +104,8 @@
                               <li>Application date : <span>{{job.application_date | date:'yyyy-MM-dd' | slice:0:10 }}</span></li>
                           </ul>
                          <div class="apply-btn2">
-                            <a href="#" class="btn">Apply Now</a>
-                         </div>
+                            <a *ngIf="deja_apply" (click)="apply(job._id)" class="btn">Apply Now</a>
+                            <a *ngIf="!deja_apply" class="btn disabled-link" disabled>Already Applied</a>                         </div>
                        </div>
                         <div class="post-details4  mb-50">
                             <!-- Small Section Tittle -->
@@ -118,6 +118,7 @@
                                 <li>Name: <span>{{company.company_name}}</span></li>
                                 <li>Web : <span> {{company.website}}</span></li>
                                 <li>Email: <span>{{company.email}}</span></li>
+                                <li>Location: <span>{{company.location}}</span></li>
                             </ul>
                        </div>
                     </div>

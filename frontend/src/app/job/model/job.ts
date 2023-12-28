@@ -2,7 +2,7 @@
 
 export class Job {
     constructor(
-        public job_id: string,
+        public _id: string,
       public job_name: string,
       public society_id: string,
       public category: string,

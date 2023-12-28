@@ -50,7 +50,7 @@ export class JobService {
       vacancy: job.vacancy,
     }
 
-    return(this.http.put<Job>(`${this.baseUrl}/api/jobs/${job.job_id}`, body, options));
+    return(this.http.put<Job>(`${this.baseUrl}/api/jobs/${job._id}`, body, options));
 
   }
 

@@ -8,7 +8,6 @@ export class Company {
       public website: string,
       public email: string,
       public location: string,
-      public Location: string,
       public logo: string,
 
     ) {}
