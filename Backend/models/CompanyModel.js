@@ -10,12 +10,11 @@ const CompanyModel = new Schema({
     website:String,
     email:String,
     location:String,
-    logo:String,
-    /*logo: {
+        logo: {
         data: Buffer,
         contentType: String,
         filename: String
-    },*/
+    }
 })
 
 const Company = mongoose.model('Company', CompanyModel)
