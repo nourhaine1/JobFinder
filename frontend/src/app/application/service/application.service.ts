@@ -24,4 +24,9 @@ export class ApplicationService {
       Job,
       options));
   }
+
+  doesApplicationExist = (iduser: any,idjob:any) : Observable<boolean>=> {
+    return this.http.get<boolean>(`${this.baseUrl}/api/applications/doesApplicationExist/${iduser}/${idjob}`)
+  }
+ 
 }

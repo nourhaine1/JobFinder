@@ -104,8 +104,9 @@
                               <li>Application date : <span>{{job.application_date | date:'yyyy-MM-dd' | slice:0:10 }}</span></li>
                           </ul>
                          <div class="apply-btn2">
-                            <a *ngIf="deja_apply" (click)="apply(job._id)" class="btn">Apply Now</a>
-                            <a *ngIf="!deja_apply" class="btn disabled-link" disabled>Already Applied</a>                         </div>
+                            <a *ngIf="!deja_apply" (click)="apply(job._id)" class="btn">Apply Now</a>
+                            <a *ngIf="deja_apply" class="btn disabled-link" disabled>Already Applied</a>
+                                                    </div>
                        </div>
                         <div class="post-details4  mb-50">
                             <!-- Small Section Tittle -->

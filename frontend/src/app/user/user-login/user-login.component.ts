@@ -25,31 +25,32 @@ export class UserLoginComponent implements OnInit {
 
   }
 
-  login() : void{
-    console.log(this.form.value)
+  login(): void {
+    console.log(this.form.value);
     if (this.form.valid) {
       this.userService.login(this.form.value).subscribe(
-        res => {
-          console.log(res)
+        (res) => {
+          console.log(res);
           this.userService.userLogin().subscribe(
-            res=>{
-              localStorage.setItem('user_id',res.id);
-              Emitters.authEmitter.emit(true)
-              this.router.navigate(['/users/profil'])
+            (userRes: any) => {
+              localStorage.setItem('user_id', userRes._id);
+              Emitters.authEmitter.emit(true);
+              this.router.navigate(['/users/profil']);
             },
-            err =>{console.error(err)}
-          ) 
-
+            (err) => {
+              console.error(err);
+            }
+          );
         },
         (error: Error) => {
-          console.log(error)
+          console.log(error);
           this.error = true;
-          Emitters.authEmitter.emit(false)
+          Emitters.authEmitter.emit(false);
         }
       );
     }
-
-
+    
   }
+  
 
 }

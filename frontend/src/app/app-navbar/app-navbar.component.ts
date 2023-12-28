@@ -32,6 +32,7 @@ export class AppNavbarComponent implements OnInit {
     this.userservice.logout().subscribe(
       (res: any) => {
         this.authenticated = false
+        this.router.navigate([''])
       }
     )
 

@@ -6,6 +6,7 @@ import { Company } from 'src/app/company/model/company';
 import { CompanyService } from 'src/app/company/service/company.service';
 import { ApplicationService } from 'src/app/application/service/application.service';
 import Swal from 'sweetalert2';
+import { UserService } from 'src/app/user/service/user.service';
 
 @Component({
   selector: 'app-details-job',
@@ -14,63 +15,63 @@ import Swal from 'sweetalert2';
 })
 export class DetailsJobComponent implements OnInit {
 
-  job?:Job
-  company?:Company
-  job_id:any
-  deja_apply:boolean=true;
+  job?: Job;
+  company?: Company;
+  job_id: any;
+  user_id: any;
+  deja_apply: boolean = false;
 
-  constructor(private applicationService:ApplicationService ,private jobService:JobService,private companyService:CompanyService,
-    private activatedRoute: ActivatedRoute) {
-
-   
-  }
+  constructor(
+    private applicationService: ApplicationService,
+    private jobService: JobService,
+    private companyService: CompanyService,
+    private activatedRoute: ActivatedRoute,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
+    this.user_id = localStorage.getItem('user_id');
+    this.job_id = this.activatedRoute.snapshot.params['id'];
 
-    this.activatedRoute.params.subscribe(
-      params=>{
+    this.activatedRoute.params.subscribe(params => {
+      this.jobService.getJobById(params['id']).subscribe(
+        (res: any) => {
+          this.job = res.result;
+          this.job_id = params['id'];
+          this.companyService.getCompanyById(this.job?.society_id).subscribe(
+            (res: any) => {
+              this.company = res.result;
+            }
+          );
+        },
+        err => {
+          console.error(err);
+        }
+      );
+    });
 
-        this.jobService.getJobById(params['id']).subscribe(
-          (res:any)=>{
-            console.log(params['id'])
-            this.job=res.result
-            this.job_id=params['id']
-            this.companyService.getCompanyById(this.job?.society_id).subscribe(
-              (res:any)=>{
-                this.company=res.result
-            
-              }
-            )
-            
-          },
-          err =>{console.error(err)}
-        )  
-      })
+    this.doesApplicationExist();
     
   }
 
-  apply(job_id:any) : void {
-
-    const application={
-      user_id:'',
-      job_id:job_id
-    }
-    application.user_id=this.activatedRoute.snapshot.params['id'];
-
-    console.log(application)
+  apply(job_id: any): void {
+    const application = {
+      user_id: this.user_id,
+      job_id: job_id
+    };
 
     this.applicationService.createApplication(application).subscribe(
-    (res:any)=>{
-      console.log(res)
-      this.openAlert()
-    }
-    )
+      (res: any) => {
+        this.openAlert();
+        this.doesApplicationExist(); // Update deja_apply after applying
+      }
+    );
   }
 
   openAlert(): void {
     Swal.fire({
       title: 'Done',
-      text: 'Your application passed succefuly',
+      text: 'Your application passed successfully',
       icon: 'success',
       confirmButtonText: 'OK',
     }).then((result) => {
@@ -79,5 +80,18 @@ export class DetailsJobComponent implements OnInit {
       }
     });
   }
+
+  doesApplicationExist(): void {
+    console.log('user_id= ' + this.user_id);
+    console.log('job_id= ' + this.job_id);
+    this.applicationService.doesApplicationExist(this.user_id, this.job_id).subscribe(
+      (res: any) => {
+        
+        this.deja_apply = res.exists;
+        
+      }
+    );
+}
+
 
 }
