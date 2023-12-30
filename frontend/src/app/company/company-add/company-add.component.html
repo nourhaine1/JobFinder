@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>New Company</h1>
 <div mat-dialog-content>
-  <form>
+  <form >
     <div class="form-group">
       <label for="recipient-name" class="col-form-label">Company Name:</label>
       <input type="text" class="form-control" id="recipient-name">
@@ -34,5 +34,5 @@
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="close()">Cancel</button>
-  <button mat-button>Save</button>
+  <button mat-button (click)="submit()" >Save</button>
 </div>

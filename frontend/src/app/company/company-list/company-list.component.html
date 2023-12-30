@@ -17,7 +17,7 @@
     <div class="job-items">
         <div class="company-img">
             <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
-        </div>
+            <img [src]="'data:' + company.logo.contentType + ';base64,' + company.logo.data" alt="Company Logo">        </div>
         <div class="job-tittle job-tittle2">
             <a href="#">
                 <h4>{{company.company_name}}</h4>

@@ -1,7 +1,8 @@
 const Company = require('../models/CompanyModel.js')
 const fs = require('fs');
+const path = require('path');
 const formidable = require('formidable');
-  
+  const multer= require ('multer');
 const getCompanys = ((req, res) => {
     Company.find({})
         .then(result => res.json({ result }))
@@ -32,79 +33,55 @@ const getCompany = (req, res) => {
 })
 
 
+
 /*const createCompany = ((req, res) => {
     Company.create(req.body)
         .then(result => res.status(200).json({ result }))
         .catch((error) => res.status(500).json({ msg: error }))
 })
 */
-const createCompany = (req, res) => {
-    const form = new formidable.IncomingForm();
-  
-    form.parse(req, (err, fields, files) => {
-      if (err) {
-        return res.status(500).json({ msg: 'Error parsing form data', error: err });
-      }
-  
-      const {
-        company_name: [companyName], // Assuming company_name is an array with a single string
-        secteur: [sector],
-        description: [desc],
-        website: [web],
-        email: [mail],
-        location: [loc],
-      } = fields;
-  
-      const logoFiles = files.logo;
-  
-      if (!logoFiles || !Array.isArray(logoFiles) || logoFiles.length === 0) {
-        return res.status(400).json({ msg: 'No logo file uploaded' });
-      }
-  
-      const logoFile = logoFiles[0];
-  
-      if (!logoFile || !logoFile.filepath) {
-        return res.status(400).json({ msg: 'No logo file path found' });
-      }
-  
-      fs.readFile(logoFile.filepath, (readErr, data) => {
-        if (readErr) {
-          return res.status(500).json({ msg: 'Error reading file', error: readErr });
-        }
-  
-        const newCompany = new Company({
-          company_name: companyName,
-          secteur: sector,
-          description: desc,
-          website: web,
-          email: mail,
-          location: loc,
-          logo: {
-            data,
-            contentType: logoFile.mimetype,
-            filename: logoFile.originalFilename
-          }
-        });
-  
-        newCompany.save()
-          .then(result => {
-            res.status(200).json({ result });
-          })
-          .catch(saveError => {
-            res.status(500).json({ msg: 'Error saving company', error: saveError });
-          });
-      });
-    });
-  };
-  
-  
-  
-  
-  
-  
-  
-   
-  
+//creation du middleware multer
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '/public/uploads/'); // Set your upload directory here
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+const upload = multer({ storage: storage });
+const createCompany = async (req, res) => {
+  if (!req.file) {
+    return res.status(400).send('No files were uploaded.');
+  }
+
+  // Extract form data from the request
+  const { company_name, secteur, description, website, email, location } = req.body;
+
+  // Create a new Company object
+  const newCompany = new Company({
+    company_name,
+    secteur,
+    description,
+    website,
+    email,
+    location,
+    logo: {
+      data: req.file.buffer, // Assuming Multer provides a buffer for the uploaded file
+      contentType: req.file.mimetype,
+      filename: req.file.originalname // File's MIME type
+    },
+  });
+
+  try {
+    // Save the new company to the database
+    const savedCompany = await newCompany.save();
+    res.status(201).json(savedCompany); // Send the saved company as a response
+  } catch (err) {
+    res.status(500).send('Failed to create the company.'); // Handle error if save fails
+  }
+};
      
 
 const updateCompany = ((req, res) => {

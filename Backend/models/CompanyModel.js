@@ -13,7 +13,7 @@ const CompanyModel = new Schema({
         logo: {
         data: Buffer,
         contentType: String,
-        filename: String
+        filename:String
     }
 })
 
