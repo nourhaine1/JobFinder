@@ -11,6 +11,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppFooterComponent } from './app-footer/app-footer.component';
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { CompanyModule } from './company/company.module';
+import { UserModule } from './user/user.module';
+import { PostJobComponent } from './recruiter/post-job/post-job.component';
+import { RecDashComponent } from './recruiter/rec-dash/rec-dash.component';
+import { RecProfileComponent } from './recruiter/rec-profile/rec-profile.component';
+
 
 @NgModule({
   declarations: [
@@ -18,8 +23,12 @@ import { CompanyModule } from './company/company.module';
     HomeComponent,
     AppFooterComponent,
     AppNavbarComponent,
-    
-    
+    PostJobComponent,
+    RecDashComponent,
+    RecProfileComponent
+
+
+
   ],
   imports: [
     BrowserModule,
@@ -27,7 +36,8 @@ import { CompanyModule } from './company/company.module';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    CompanyModule
+    CompanyModule,
+    UserModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,6 +7,7 @@ import { UserRegisterComponent } from './user-register/user-register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserProfilComponent } from './user-profil/user-profil.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { UserEditComponent } from './user-edit/user-edit.component';
     CommonModule,
     UserRoutingModule,
     ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class UserModule { }

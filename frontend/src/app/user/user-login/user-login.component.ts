@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder,FormGroup } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../service/user.service';
 import { Router } from '@angular/router';
 import { Emitters } from 'src/app/emitters/emitters';
@@ -11,47 +11,46 @@ import { Emitters } from 'src/app/emitters/emitters';
 })
 export class UserLoginComponent implements OnInit {
 
+  error=false;
 
-
-  constructor(
-    private router:Router,
-    private formBuilder: FormBuilder,
-    private userService: UserService) {
+  constructor(private router:Router, private formBuilder: FormBuilder, private userService: UserService) {
 
   }
   form = this.formBuilder.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(3)]],
+  });
 
-    email: '',
-    password: '',
-
-  })
   ngOnInit(): void {
 
   }
 
-  login() : void{
-    console.log(this.form.value)
+  login(): void {
+    console.log(this.form.value);
     if (this.form.valid) {
       this.userService.login(this.form.value).subscribe(
-        res => {
-          console.log(res)
+        (res) => {
+          console.log(res);
           this.userService.userLogin().subscribe(
-            res=>{
-              Emitters.authEmitter.emit(true)
-              this.router.navigate(['/users/profil'])
+            (userRes: any) => {
+              localStorage.setItem('user_id', userRes._id);
+              Emitters.authEmitter.emit(true);
+              this.router.navigate(['/users/profil']);
             },
-            err =>{console.error(err)}
-          )
-
+            (err) => {
+              console.error(err);
+            }
+          );
         },
         (error: Error) => {
-          console.log(error)
-          Emitters.authEmitter.emit(false)
+          console.log(error);
+          this.error = true;
+          Emitters.authEmitter.emit(false);
         }
       );
     }
 
-
   }
+
 
 }

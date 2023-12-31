@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../model/user';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../service/user.service';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder} from '@angular/forms';
 
 @Component({
   selector: 'app-user-edit',
@@ -37,7 +37,7 @@ export class UserEditComponent implements OnInit {
     this.userservice.editUser(
       new User(this.user!.id, values.fullName!, values.description!, values.email!,"", values.status!, values.adresse!, values.birthday!, values.skills!, values.pdf!, values.image!)
     ).subscribe(
-      user => 
+      user =>
       {
         console.log(user)
         this.router.navigate(['/users/profil'])
@@ -53,7 +53,7 @@ export class UserEditComponent implements OnInit {
         this.userservice.getUserById(params['id']).subscribe(
           (res: any) => {
             this.user = new User(params['id'], '', '', '', '', '', '', new Date(), '', '', '');
-            
+
             this.user.fullName = res.result.fullName
             this.user.description = res.result.description
             this.user.email = res.result.email
@@ -61,7 +61,7 @@ export class UserEditComponent implements OnInit {
             this.user.adresse = res.result.adresse
             this.user.birthday = res.result.birthday
             this.user.skills = res.result.skills
-            
+
 
 
             this.editForm.setValue({
@@ -72,7 +72,7 @@ export class UserEditComponent implements OnInit {
               adresse: this.user.adresse,
               birthday: new Date(this.user.birthday),
               skills: this.user.skills,
-          
+
               pdf: this.user.pdf,
               image:  this.user.image
             })

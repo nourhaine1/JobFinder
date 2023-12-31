@@ -1,14 +1,14 @@
 <header>
     <!-- Header Start -->
-   <div class="header-area header-transparrent">
-       <div class="headder-top header-sticky">
+    <div class="header-area header-transparrent">
+        <div class="headder-top header-sticky">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-2">
                         <!-- Logo -->
                         <div class="logo">
                             <a href="index.html"><img src="assets/img/logo/logo.png" alt="noo"></a>
-                        </div>  
+                        </div>
                     </div>
                     <div class="col-lg-9 col-md-9">
                         <div class="menu-wrapper">
@@ -27,19 +27,25 @@
                                                 <li><a href="job_details.html">job Details</a></li>
                                             </ul>
                                         </li>
+                                        <li><a href="#">Jobs</a>
+                                            <ul class="submenu">
+                                                <li><a href="blog.html">Recruiter</a></li>
+                                                <li><a href="single-blog.html">Seeker</a></li>
+                                            </ul>
+                                        </li>
                                         <li><a routerLink="/users/profil" *ngIf="authenticated==true">Profil</a></li>
                                     </ul>
                                 </nav>
-                            </div>          
+                            </div>
                             <!-- Header-btn -->
                             <div class="header-btn d-none f-right d-lg-block" *ngIf="authenticated==false">
                                 <a href="/users/register" class="btn head-btn1">Register</a>
-                                <a href="/users/login" class="btn head-btn2">Login</a> 
+                                <a href="/users/login" class="btn head-btn2">Login</a>
                             </div>
 
                             <div class="header-btn d-none f-right d-lg-block" *ngIf="authenticated==true">
                                 <a routerLink="/" (click)="logout()" class="btn head-btn1">Logout</a>
-                               
+
                             </div>
                         </div>
                     </div>
@@ -49,7 +55,7 @@
                     </div>
                 </div>
             </div>
-       </div>
-   </div>
+        </div>
+    </div>
     <!-- Header End -->
 </header>

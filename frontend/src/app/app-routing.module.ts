@@ -7,21 +7,28 @@ import { UserRegisterComponent } from './user/user-register/user-register.compon
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
-  
- 
-  
+
+
+
   {
     path: 'users',
     loadChildren: () => import('./user/user.module')
       .then(m => m.UserModule),
-     
+
+  },
+
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.component')
+      .then(m => m.HomeComponent),
+
   },
 
   {
     path: 'companies',
     loadChildren: () => import('./company/company.module')
       .then(m => m.CompanyModule),
-     
+
   },
 ];
 
