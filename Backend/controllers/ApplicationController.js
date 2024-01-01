@@ -28,6 +28,24 @@ const createApplication = ((req, res) => {
 })
 
 
+const doesApplicationExist = async (req, res) => {
+    try {
+      const result = await Application.findOne({ user_id: req.params.UserID, job_id: req.params.JobID });
+      
+      if (result) {
+        res.json({ exists: true });
+      } else {
+        res.json({ exists: false });
+      }
+    } catch (error) {
+      console.error('Error finding application:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  };
+
+  
+
+
 
 
 
@@ -36,5 +54,6 @@ const createApplication = ((req, res) => {
 module.exports = {
     getApplications,
     createApplication,
-    deleteApplication
+    deleteApplication,
+    doesApplicationExist
 }

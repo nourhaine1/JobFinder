@@ -37,11 +37,23 @@ const createCompany = ((req, res) => {
         .catch((error) => res.status(500).json({ msg: error }))
 })
 
-const updateCompany = ((req, res) => {
-    Company.findOneAndUpdate({ _id: req.params.CompanyID })
-        .then(result => res.json({ result }))
-        .catch(() => res.json({ msg: 'Company not found' }))
-})
+const updateCompany = (req, res) => {
+    const companyId = req.params.CompanyID;
+
+    Company.findOneAndUpdate({ _id: companyId }, req.body, { new: true }) // { new: true } returns the updated document
+        .then(updatedCompany => {
+            if (updatedCompany) {
+                res.json({ result: updatedCompany });
+            } else {
+                res.status(404).json({ msg: 'Company not found' });
+            }
+        })
+        .catch(error => {
+            console.error('Error updating company:', error);
+            res.status(500).json({ msg: 'Internal server error' });
+        });
+};
+
 
 
 
