@@ -8,6 +8,9 @@ const PRIVATE='https://naukaries.herokuapp.com/private/';
   providedIn: 'root'
 })
 export class RecruiterService {
+  postjob(arg0: string) {
+    throw new Error('Method not implemented.');
+  }
 
   constructor(private httpCli:HttpClient) { }
 

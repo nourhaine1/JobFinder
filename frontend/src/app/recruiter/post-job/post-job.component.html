@@ -1,1 +1,19 @@
-<p>post-job works!</p>
+<div class="container-fluid">
+    <nav class=" mt-1 navbar navbar-expand-lg bg-info navbar-dark danger-color rounded">
+        <!-- Brand -->
+        <img class="rounded-circle" src="/" alt="somthing" id="logobrand"><a class="navbar-brand " id="logo"><B>JOBS</B></a>
+        <!-- Links -->
+        <ul class="navbar-nav ml-auto">
+            <!-- Dropdown -->
+            <li class="nav-item">
+                <a routerLink="/rdashboard/postedjobs" class="nav-link p-3"> <i class="fa fa-lock"></i> Dashboard</a>
+            </li>
+            <!--<li class="nav-item">
+        <a (click)="logoutRecruiter()" class="nav-link p-3" style="cursor: pointer;" > <i class="fa fa-sign-in"></i> &nbsp;Logout</a>
+      </li>-->
+            <li class="nav-item">
+                <a id="companyname" class="nav-link p-3"><strong>{{companyname}}</strong></a>
+            </li>
+        </ul>
+    </nav>
+</div>
