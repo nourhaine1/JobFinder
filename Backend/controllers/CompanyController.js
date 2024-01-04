@@ -50,37 +50,32 @@ const storage = multer.diskStorage({
     cb(null, file.originalname);
   }
 });
-const upload = multer({ storage: storage });
 const createCompany = async (req, res) => {
-  if (!req.file) {
-    return res.status(400).send('No files were uploaded.');
-  }
-
-  // Extract form data from the request
-  const { company_name, secteur, description, website, email, location } = req.body;
-
-  // Create a new Company object
-  const newCompany = new Company({
-    company_name,
-    secteur,
-    description,
-    website,
-    email,
-    location,
-    logo: {
-      data: req.file.buffer, // Assuming Multer provides a buffer for the uploaded file
-      contentType: req.file.mimetype,
-      filename: req.file.originalname // File's MIME type
-    },
-  });
-
   try {
-    // Save the new company to the database
-    const savedCompany = await newCompany.save();
-    res.status(201).json(savedCompany); // Send the saved company as a response
-  } catch (err) {
-    res.status(500).send('Failed to create the company.'); // Handle error if save fails
-  }
+    const imageBuffer = req.file.buffer;
+    const base64String = imageBuffer.toString('base64'); // Get base64 representation
+
+    const newCompany = new Company({
+        company_name: req.body.company_name,
+        secteur: req.body.secteur,
+        description: req.body.description,
+        website: req.body.website,
+        email: req.body.email,
+        location: req.body.location,
+        logo: {
+            data: imageBuffer,
+            contentType: req.file.mimetype,
+            filename: req.file.originalname,
+            base64: base64String // Store base64 representation
+        }
+    });
+
+    await newCompany.save();
+    res.status(200).send('Image uploaded and saved successfully');
+} catch (err) {
+  console.error(err); // Log the error for further investigation
+    res.status(500).send('Error uploading image');
+}
 };
      
 
