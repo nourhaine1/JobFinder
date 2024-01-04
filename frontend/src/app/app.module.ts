@@ -12,7 +12,7 @@ import { AppFooterComponent } from './app-footer/app-footer.component';
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { CompanyModule } from './company/company.module';
 import { UserModule } from './user/user.module';
-import { PostJobComponent } from './recruiter/post-job/post-job.component';
+import { PostjobComponent } from './recruiter/post-job/post-job.component';
 import { RecDashComponent } from './recruiter/rec-dash/rec-dash.component';
 import { RecProfileComponent } from './recruiter/rec-profile/rec-profile.component';
 
@@ -23,7 +23,7 @@ import { RecProfileComponent } from './recruiter/rec-profile/rec-profile.compone
     HomeComponent,
     AppFooterComponent,
     AppNavbarComponent,
-    PostJobComponent,
+    PostjobComponent,
     RecDashComponent,
     RecProfileComponent
 
