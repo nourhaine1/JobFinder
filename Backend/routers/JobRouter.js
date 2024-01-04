@@ -8,11 +8,13 @@ const  {
     getJob,
     createJob,
     updateJob,
-    deleteJob 
+    deleteJob,
+    getJobsByUserId
 } = require('../controllers/JobController.js')
 
 router.get('/',getJobs)
 router.get('/getJob/:JobID',getJob)
+router.get('/jobByUser/:UserId',getJobsByUserId)
 router.post('/',createJob)
 router.put('/:JobID',updateJob)
 router.delete('/deleteJob/:JobID', deleteJob)

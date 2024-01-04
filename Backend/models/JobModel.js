@@ -10,6 +10,12 @@ const JobModel = new Schema({
         ref: 'Company',
         required: true
       },
+
+      user_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+      },
     category:String,
     job_description:String,
 	skills:String,

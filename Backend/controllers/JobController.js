@@ -44,6 +44,19 @@ const updateJob = ((req, res) => {
 })
 
 
+const getJobsByUserId = async (req, res) => {
+    try {
+      const jobs = await Job.find({ user_id: req.params.UserId }).exec();
+      res.json({ jobs }); // Assuming you want to send the jobs as a JSON response
+    } catch (error) {
+      console.error('Error fetching jobs by user ID:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  };
+  
+  
+
+
 
 
 
@@ -52,5 +65,6 @@ module.exports = {
     getJob,
     createJob,
     updateJob,
-    deleteJob
+    deleteJob,
+    getJobsByUserId
 }
