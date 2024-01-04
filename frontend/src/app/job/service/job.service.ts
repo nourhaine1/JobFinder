@@ -58,4 +58,8 @@ export class JobService {
     return this.http.delete(`${this.baseUrl}/api/jobs/deleteJob/${id}`)
   }
 
+  getJobByUserId = (id : any) : Observable<Job[]>=> {
+    return this.http.get<Job[]>(`${this.baseUrl}/api/jobs/jobByUser/${id}`)
+  }
+
 }

@@ -33,6 +33,7 @@ export class UserLoginComponent implements OnInit {
           console.log(res);
           this.userService.userLogin().subscribe(
             (userRes: any) => {
+              console.log(userRes)
               localStorage.setItem('user_id', userRes._id);
               Emitters.authEmitter.emit(true);
               this.router.navigate(['/users/profil']);
