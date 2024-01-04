@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { JobService } from '../service/job.service';
 import { Job } from '../model/job';
+import { Company } from 'src/app/company/model/company';
+import { CompanyService } from 'src/app/company/service/company.service';
 
 @Component({
   selector: 'app-find-job',
@@ -10,13 +12,16 @@ import { Job } from '../model/job';
 export class FindJobComponent implements OnInit {
 
   jobs: Job[] = [];
+  companys:Company[]=[];
   Jobs_found?:Number
   currentPage = 1;
   jobsPerPage = 5;
 
-  constructor(private jobService:JobService) {
+  constructor(private jobService:JobService,private companyService:CompanyService) {
 
   }
+
+  
     
   getCurrentPageJobs(): any[] {
     const startIndex = (this.currentPage - 1) * this.jobsPerPage;
@@ -42,6 +47,20 @@ export class FindJobComponent implements OnInit {
       },
       err =>{console.error(err)}
     )  
+
+    this.getCompanies()
+  }
+
+  getCompanies():any{
+   
+    this.companyService.getCompanies().subscribe(
+      (res:any)=>{
+        this.companys=res.result
+        console.log(res.result)
+
+      }
+    )
+  
   }
 
 }

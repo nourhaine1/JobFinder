@@ -56,14 +56,17 @@
                                 <div class="single-job-items mb-30" *ngFor="let job of getCurrentPageJobs()">
                                     <div class="job-items">
                                         <div class="company-img">
-                                            <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
+                                            <a [routerLink]="'/jobs/jobdetails/' + job._id"><img src="assets/img/icon/job-list1.png" alt=""></a>
                                         </div>
                                         <div class="job-tittle job-tittle2">
-                                            <a href="#">
+                                            <a [routerLink]="'/jobs/jobdetails/' + job._id">
                                                 <h4>{{job.job_name}}</h4>
                                             </a>
                                             <ul>
-                                                <li> {{job.society_id}}</li>
+                                                <div *ngFor="let company of companys">
+                                                    <li *ngIf="company._id===job.society_id"> {{company.company_name}}</li>
+                                                </div>
+                                                
                                                 <li><i class="fas fa-map-marker-alt"></i>{{job.Location}}</li>
                                                 <li>{{job.salaire}}</li>
                                             </ul>

@@ -14,7 +14,8 @@ export class Job {
       public salaire: number,
       public posted_date: Date,
       public application_date: Date,
-      public vacancy: number
+      public vacancy: number,
+      public company_name: string
     ) {}
   }
   
