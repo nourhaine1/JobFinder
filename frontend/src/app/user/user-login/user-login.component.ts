@@ -43,7 +43,7 @@ export class UserLoginComponent implements OnInit {
           );
         },
         (error: Error) => {
-          console.log(error);
+          //console.log(error);
           this.error = true;
           Emitters.authEmitter.emit(false);
         }
