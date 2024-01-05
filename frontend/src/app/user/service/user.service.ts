@@ -22,7 +22,6 @@ export class UserService {
         { 'content-type': 'application/json'}
         )
     };
-    //const body = JSON.stringify(book)
     return(this.http.post<User>(
       `${this.baseUrl}/api/users/`,
       User,

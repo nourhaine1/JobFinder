@@ -28,5 +28,9 @@ export class ApplicationService {
   doesApplicationExist = (iduser: any,idjob:any) : Observable<boolean>=> {
     return this.http.get<boolean>(`${this.baseUrl}/api/applications/doesApplicationExist/${iduser}/${idjob}`)
   }
+
+  getApplicationsByUserId = (iduser: any) : Observable<Application[]>=> {
+    return this.http.get<Application[]>(`${this.baseUrl}/api/applications/applicationsByUser/${iduser}`)
+  }
  
 }

@@ -6,6 +6,7 @@ import { JobAddComponent } from './job-add/job-add.component';
 import { FindJobComponent } from './find-job/find-job.component';
 import { DetailsJobComponent } from './details-job/details-job.component';
 import { JobPostedComponent } from './job-posted/job-posted.component';
+import { PostuledJobComponent } from './postuled-job/postuled-job.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { JobPostedComponent } from './job-posted/job-posted.component';
     JobAddComponent,
     FindJobComponent,
     DetailsJobComponent,
-    JobPostedComponent
+    JobPostedComponent,
+    PostuledJobComponent
   ],
   imports: [
     CommonModule,
