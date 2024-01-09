@@ -12,6 +12,7 @@ import { AppFooterComponent } from './app-footer/app-footer.component';
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { CompanyModule } from './company/company.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { JobModule } from './job/job.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HomeComponent,
     AppFooterComponent,
     AppNavbarComponent,
-    
     
   ],
   imports: [
@@ -29,7 +29,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     ReactiveFormsModule,
     CompanyModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    JobModule
   ],
   providers: [],
   bootstrap: [AppComponent]

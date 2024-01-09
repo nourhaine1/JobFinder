@@ -1,7 +1,7 @@
 const Company = require('../models/CompanyModel.js')
 const fs = require('fs');
 const path = require('path');
-const formidable = require('formidable');
+const cloudinary = require('cloudinary').v2;
   const multer= require ('multer');
 const getCompanys = ((req, res) => {
     Company.find({})
@@ -41,43 +41,39 @@ const getCompany = (req, res) => {
 })
 */
 //creation du middleware multer
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, '/public/uploads/'); // Set your upload directory here
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  }
+cloudinary.config({ 
+  cloud_name: 'dh31yt1c5', 
+  api_key: '892623454755429', 
+  api_secret: '5roJ9umqhsxvCjiNO0Qx9uRAeu0' 
 });
 const createCompany = async (req, res) => {
-  try {
-    const imageBuffer = req.file.buffer;
-    const base64String = imageBuffer.toString('base64'); // Get base64 representation
+  
 
+
+  try {
+    // Upload image to Cloudinary
+    const result = await cloudinary.uploader.upload(req.file.path);
+    // Create a new Company instance
     const newCompany = new Company({
-        company_name: req.body.company_name,
-        secteur: req.body.secteur,
-        description: req.body.description,
-        website: req.body.website,
-        email: req.body.email,
-        location: req.body.location,
-        logo: {
-            data: imageBuffer,
-            contentType: req.file.mimetype,
-            filename: req.file.originalname,
-            base64: base64String // Store base64 representation
-        }
+      company_name: req.body.company_name,
+      secteur: req.body.secteur,
+      description: req.body.description,
+      website: req.body.website,
+      email: req.body.email,
+      location: req.body.location,
+      logo: result.secure_url // Store the Cloudinary URL directly
     });
 
+    // Save the new company to MongoDB
     await newCompany.save();
-    res.status(200).send('Image uploaded and saved successfully');
-} catch (err) {
-  console.error(err); // Log the error for further investigation
-    res.status(500).send('Error uploading image');
-}
-};
-     
+
+    // Respond with success and the image URL
+    res.json({ imageURL: result.secure_url });
+  } catch (err) {
+    res.status(500).json({ error: 'Something went wrong' });
+    console.error(err);
+  }
+};  
 
 const updateCompany = ((req, res) => {
     Company.findOneAndUpdate({ _id: req.params.CompanyID })

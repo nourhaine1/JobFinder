@@ -1,7 +1,7 @@
 <br>
-<br>
+
 <div class="count-job mb-35">
-    <span>Companies</span>
+    <span> New Jobs</span>
     </div>
     <div class="row">
         <div class="col-lg-12">
@@ -9,11 +9,11 @@
                 <span>{{companiesFound}} companiesFound</span>
                 <div class="select-job-items">
                     <div class="my-2">
-                        <button class="btn btn-primary" icon="pi pi-plus" mat-raised-button (click)="openAddCompanyDialog()">Add Company</button>
+                        <button class="btn btn-primary" icon="pi pi-plus" mat-raised-button>Add Company</button>
                     </div>                </div>
             </div>
         </div>
-<div class="single-job-items mb-30" *ngFor="let company of getCurrentPageCompanies()">
+<div class="single-job-items mb-30" *ngFor="let company of getCurrentPageJobs()">
     <div class="job-items">
         <div class="company-img">
             <a href="#"><img [src]="company.logo.fileName" alt=""></a>

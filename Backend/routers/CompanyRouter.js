@@ -1,18 +1,19 @@
 const express = require('express')
 const router = express.Router()
-const multer=require('multer');
 const fs = require('fs');
 const path = require('path');
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, path.join(__dirname, '../public/uploads')); // Destination folder for storing uploaded files
-    },
-    filename: function (req, file, cb) {
-      cb(null, Date.now() + path.extname(file.originalname)); // Renaming the file to avoid conflicts
-    },
-  });
-  
-  const upload = multer({ storage: storage });
+const multer = require('multer');
+
+const storage = multer.diskStorage({});
+
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith('image')) {
+    cb(null, true);
+  } else {
+    cb('invalid image file!', false);
+  }
+};
+const upload = multer({ storage, fileFilter });
 
 const  { 
     getCompanys,

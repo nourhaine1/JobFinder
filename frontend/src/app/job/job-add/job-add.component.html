@@ -1,1 +1,56 @@
-<p>job-add works!</p>
+
+<h1 mat-dialog-title>New Company</h1>
+<div mat-dialog-content>
+  <form (submit)="onSubmit()">
+    <div class="form-group">
+      <label for="recipient-name" class="col-form-label">Job Name:</label>
+      <input type="text" formControlName="job_name" class="form-control" id="recipient-name">
+    </div>
+   
+    <div class="form-group">
+      <label for="message-text" class="col-form-label">category:</label>
+      <textarea class="form-control" formControlName="category" id="message-text"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="recipient-name" class="col-form-label">job_description:</label>
+      <input type="text" class="form-control" formControlName="job_description" id="recipient-name">
+    </div>
+    <div class="form-group">
+      <label for="recipient-name" class="col-form-label">skills:</label>
+      <input type="text" class="form-control" formControlName="skills" id="recipient-name">
+    </div>
+    <div class="form-group">
+      <label for="recipient-name" class="col-form-label">Experiences_Education:</label>
+      <input type="text" formControlName="Experiences_Education" class="form-control" id="recipient-name">
+    </div>
+    <div class="form-group">
+      <label for="recipient-name" class="col-form-label">Location:</label>
+      <input type="text" class="form-control"  formControlName="website" id="recipient-name">
+    </div>
+    <div class="form-group">
+      <label for="recipient-name" class="col-form-label">Job_type:</label>
+      <input type="text" class="form-control"  formControlName="Job_type" id="recipient-name">
+    </div>
+    <div class="form-group">
+        <label for="recipient-name" class="col-form-label">Salary:</label>
+        <input type="text" class="form-control"  formControlName="Salary" id="recipient-name">
+      </div>
+      <div class="form-group">
+        <label for="recipient-name" class="col-form-label">posted_date:</label>
+        <input type="text" class="form-control"  formControlName="posted_date" id="recipient-name">
+      </div>
+      <div class="form-group">
+        <label for="recipient-name" class="col-form-label">application_date:</label>
+        <input type="text" class="form-control"  formControlName="application_date" id="recipient-name">
+      </div>
+      <div class="form-group">
+        <label for="recipient-name" class="col-form-label">vacancy:</label>
+        <input type="text" class="form-control"  formControlName="vacancy" id="recipient-name">
+      </div>
+    </form>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="close()">Cancel</button>
+  <button mat-button (click)="onSubmit()" >Save</button>
+</div>

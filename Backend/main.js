@@ -20,7 +20,6 @@ const job_routes = require('./routers/JobRouter.js');
 app.use('/api/jobs', job_routes);
 
 
-
 // pour utiliser les routes de company
 const company_routes = require('./routers/CompanyRouter.js');
 app.use('/api/companys', company_routes);

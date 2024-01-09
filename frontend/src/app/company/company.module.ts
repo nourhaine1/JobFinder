@@ -6,7 +6,7 @@ import { CompanyListComponent } from './company-list/company-list.component';
 import { CompanyAddComponent } from './company-add/company-add.component';
 import { MatDialogModule } from '@angular/material/dialog'; // Import MatDialogModule
 import {MatButtonModule} from '@angular/material/button'; 
-
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     CompanyListComponent,
@@ -16,7 +16,8 @@ import {MatButtonModule} from '@angular/material/button';
     CommonModule,
     CompanyRoutingModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    ReactiveFormsModule
   ]
 })
 export class CompanyModule { }
