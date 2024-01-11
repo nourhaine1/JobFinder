@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+
+    <!-- Custom Css -->
+
+
+    <!-- FontAwesome 5 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar top -->
+    <div class="navbar-top">
+        <div class="title">
+            <h1>Profile</h1>
+        </div>
+
+       
+    </div>
+    <!-- End -->
+
+
+    <!-- Main -->
+    <div class="main">
+        <h2>IDENTITY</h2>
+        <div class="card">
+            <div class="card-body">
+                <i routerLink="/users/edituser/65834a28db4f0a0fa2630eb7"  class="fa fa-pen fa-xs edit"></i>
+                <table>
+                    <tbody>
+                        <div class="d-flex justify-content-center">
+                            <img [src]="user.image" alt="profilpic"/>
+                        </div>
+                        
+                            
+                     
+                        <tr>
+                            <td>Full Name</td>
+                            <td>:</td>
+                            <td>{{ user.fullName }}</td>
+                        </tr>
+                        <tr>
+                            <td>Birthday Date</td>
+                            <td>:</td>
+                            <td>{{ user.birthday | date:'yyyy-MM-dd' | slice:0:10 }}</td>
+                        </tr>
+                        <tr>
+                            <td>Status</td>
+                            <td>:</td>
+                            <td>{{ user.status }}</td>
+                        </tr>
+                        <tr>
+                            <td>Description</td>
+                            <td>:</td>
+                            <td>{{ user.description }}</td>
+                        </tr>
+                        <tr>
+                            <td>Adress</td>
+                            <td>:</td>
+                            <td>{{ user.adresse }}</td>
+                        </tr>
+                        <tr>
+                            <td>Skills</td>
+                            <td>:</td>
+                            <td>{{ user.skills }}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Email</td>
+                            <td>:</td>
+                            <td>{{ user.email }}</td>
+                        </tr>
+
+                        <tr>
+                            <td>CV</td>
+                            <td>:</td>
+                            <td>{{ user.pdf }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <h2>SOCIAL MEDIA</h2>
+        <div class="card">
+            <div class="card-body">
+                <i class="fa fa-pen fa-xs edit"></i>
+                <div class="social-media">
+                    <span class="fa-stack fa-sm">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-facebook fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span class="fa-stack fa-sm">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span class="fa-stack fa-sm">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span class="fa-stack fa-sm">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-invision fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span class="fa-stack fa-sm">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span class="fa-stack fa-sm">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-whatsapp fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span class="fa-stack fa-sm">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-snapchat fa-stack-1x fa-inverse"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End -->
+</body>
+</html>
