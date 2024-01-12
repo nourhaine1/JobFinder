@@ -19,13 +19,11 @@
                                         <li><a href="">Home</a></li>
                                         <li><a routerLink="/jobs/findjob">Find a Jobs </a></li>
                                         <li><a routerLink="/jobs/postuledjob" *ngIf="authenticated==true">Postuled Jobs </a></li>
-                                        <li><a href="about.html">About</a></li>
-                                        <li><a href="#">Page</a>
+                                     
+                                        <li><a routerLink="/" *ngIf="authenticated==true">Company</a>
                                             <ul class="submenu">
-                                                <li><a href="blog.html">Blog</a></li>
-                                                <li><a href="single-blog.html">Blog Details</a></li>
-                                                <li><a href="elements.html">Elements</a></li>
-                                                <li><a href="job_details.html">job Details</a></li>
+                                                <li><a routerLink="/companies/companies" *ngIf="authenticated==true">Companies List </a></li>
+                                              
                                             </ul>
                                         </li>
                                         <li><a routerLink="/users/profil" *ngIf="authenticated==true">Profil</a></li>
