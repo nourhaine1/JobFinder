@@ -2,15 +2,15 @@ console.log("Aaselemmaaa");
 
 const express = require('express');
 const logger = require('morgan');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const app = express();
 const port = 3800;
 
-const cors= require('cors')
-
 app.use(logger('dev'));
+app.use(express.json());
 app.use(cookieParser());
 // cros pour que le front end puisse acceder au backEnd (car les deux non pas le meme port) 
 app.use(cors({
@@ -25,6 +25,7 @@ app.use(bodyParser.json());
 // pour utiliser les routes de job
 const job_routes = require('./routers/JobRouter.js');
 app.use('/api/jobs', job_routes);
+
 
 // pour utiliser les routes de user
 const user_routes = require('./routers/UserRouter.js');

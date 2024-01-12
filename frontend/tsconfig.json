@@ -1,6 +1,15 @@
 /* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
+  "paths" : {
+    "crypto": ["./node_modules/crypto-browserify"],
+    "stream": ["./node_modules/stream-browserify"],
+    "assert": ["./node_modules/assert"],
+    "http": ["./node_modules/stream-http"],
+    "https": ["./node_modules/https-browserify"],
+    "os": ["./node_modules/os-browserify"],
+  }
+,
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
@@ -24,6 +33,9 @@
       "dom"
     ]
   },
+  "include": ["src/polyfills.ts"],
+  "exclude": ["node_modules"],
+  
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
