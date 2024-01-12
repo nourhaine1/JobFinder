@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { CompanyAddComponent } from 'src/app/company/company-add/company-add.component';
-import { CompanyServiceService } from 'src/app/company/service/company-service.service';
+import { CompanyAddComponent } from '../../company/company-add/company-add.component';
+import { CompanyService } from '../../company/service/company.service';
+
 
 @Component({
   selector: 'app-job-add',
@@ -11,7 +12,7 @@ import { CompanyServiceService } from 'src/app/company/service/company-service.s
   styleUrls: ['./job-add.component.css']
 })
 export class JobAddComponent {
-  constructor(private router:Router,private formBuilder: FormBuilder,public dialogRef: MatDialogRef<CompanyAddComponent>,private service : CompanyServiceService) { }
+  constructor(private router:Router,private formBuilder: FormBuilder,public dialogRef: MatDialogRef<CompanyAddComponent>,private service : CompanyService) { }
   form = this.formBuilder.group({
     company_name: '',
     secteur: '',

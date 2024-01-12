@@ -1,10 +1,10 @@
 import { Component, Output ,EventEmitter} from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { CompanyServiceService } from '../service/company-service.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Cloudinary } from '@cloudinary/angular-5.x';
+import { CompanyService } from '../service/company.service';
 @Component({
   selector: 'app-company-add',
   templateUrl: './company-add.component.html',
@@ -15,7 +15,7 @@ export class CompanyAddComponent {
   private cloudinaryBaseUrl = 'https://res.cloudinary.com/dh31yt1c5/image/upload/';
   private uploadPreset = 'job_img'; // Replace with your actual upload preset
 
-  constructor(private router:Router,private formBuilder: FormBuilder,private http : HttpClient,public dialogRef: MatDialogRef<CompanyAddComponent>,private service : CompanyServiceService,
+  constructor(private router:Router,private formBuilder: FormBuilder,private http : HttpClient,public dialogRef: MatDialogRef<CompanyAddComponent>,private service : CompanyService,
     ) {this.companyForm = this.formBuilder.group({
        company_name: '',
        secteur: '',

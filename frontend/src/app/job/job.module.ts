@@ -15,8 +15,7 @@ import { PostuledJobComponent } from './postuled-job/postuled-job.component';
 @NgModule({
   declarations: [
     JobAddComponent,
-    JobListComponent
-
+    JobListComponent,
     FindJobComponent,
     DetailsJobComponent,
     JobPostedComponent,

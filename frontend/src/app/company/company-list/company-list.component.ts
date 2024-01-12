@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Company } from '../model/Company';
-import { CompanyServiceService } from '../service/company-service.service';
 import { Subscription } from 'rxjs';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CompanyAddComponent } from '../company-add/company-add.component';
+import { CompanyService } from '../service/company.service';
+import { Company } from '../model/company';
 @Component({
   selector: 'app-company-list',
   templateUrl: './company-list.component.html',
@@ -18,7 +18,7 @@ export class CompanyListComponent implements OnInit {
   showAddCompanyModal = false;
 
 
-  constructor(private service : CompanyServiceService,public dialog: MatDialog ){}
+  constructor(private service : CompanyService,public dialog: MatDialog ){}
 
 getCurrentPageCompanies(): any[] {
 

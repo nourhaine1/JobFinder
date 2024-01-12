@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Application } from 'src/app/application/model/application';
-import { ApplicationService } from 'src/app/application/service/application.service';
-import { CompanyService } from 'src/app/company/service/company.service';
+
 import { JobService } from '../service/job.service';
 import { Job } from '../model/job';
-import { Company } from 'src/app/company/model/company';
-
+import { Application } from '../../application/model/application';
+import { Company } from '../../company/model/company';
+import { CompanyService } from '../../company/service/company.service';
+import { ApplicationService } from '../../application/service/application.service';
 @Component({
   selector: 'app-postuled-job',
   templateUrl: './postuled-job.component.html',

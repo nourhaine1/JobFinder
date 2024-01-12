@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { JobService } from '../service/job.service';
 import { Job } from '../model/job';
-import { Company } from 'src/app/company/model/company';
-import { CompanyService } from 'src/app/company/service/company.service';
+import { Company } from '../../company/model/company';
+import { CompanyService } from '../../company/service/company.service';
+
 
 @Component({
   selector: 'app-find-job',

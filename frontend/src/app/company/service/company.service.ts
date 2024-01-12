@@ -16,7 +16,11 @@ export class CompanyService {
     return this.http.get<Company>(`${this.baseUrl}/api/companys/getCompany/${id}`)
   }
 
-  getCompanies = () : Observable<Company[]>=> {
-    return this.http.get<Company[]>(`${this.baseUrl}/api/companys/`)
+  getCompanies = () : Observable<Company[]> =>{
+    return this.http.get<Company[]>(`${this.baseUrl}/api/companys/`, );
+  }
+  addCompany(companyData: FormData): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/api/companys/`, companyData)
+    
   }
 }
