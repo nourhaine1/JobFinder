@@ -19,11 +19,10 @@ export class UserProfilComponent implements OnInit {
     
   
   ngOnInit(): void {
-
+    
     this.userService.userLogin().subscribe(
       res=>{
         this.user=res
-        console.log(this.user)
       },
       err =>{console.error(err)}
     )  

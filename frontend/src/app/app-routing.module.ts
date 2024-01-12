@@ -8,8 +8,6 @@ import { UserRegisterComponent } from './user/user-register/user-register.compon
 const routes: Routes = [
   {path:'',component:HomeComponent},
   
- 
-  
   {
     path: 'users',
     loadChildren: () => import('./user/user.module')
@@ -24,6 +22,14 @@ const routes: Routes = [
      
   },
   */
+
+
+  {
+    path: 'jobs',
+    loadChildren: () => import('./job/job.module')
+      .then(m => m.JobModule),
+     
+  },
 ];
 
 @NgModule({

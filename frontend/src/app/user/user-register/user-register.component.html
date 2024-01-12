@@ -5,103 +5,9 @@
     <script src="/docs/5.3/assets/js/color-modes.js"></script>
 
 
-
-
-
-
-
-
-
-
-
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-
-        .b-example-divider {
-            width: 100%;
-            height: 3rem;
-            background-color: rgba(0, 0, 0, .1);
-            border: solid rgba(0, 0, 0, .15);
-            border-width: 1px 0;
-            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-        }
-
-        .b-example-vr {
-            flex-shrink: 0;
-            width: 1.5rem;
-            height: 100vh;
-        }
-
-        .bi {
-            vertical-align: -.125em;
-            fill: currentColor;
-        }
-
-        .nav-scroller {
-            position: relative;
-            z-index: 2;
-            height: 2.75rem;
-            overflow-y: hidden;
-        }
-
-        .nav-scroller .nav {
-            display: flex;
-            flex-wrap: nowrap;
-            padding-bottom: 1rem;
-            margin-top: -1px;
-            overflow-x: auto;
-            text-align: center;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .btn-bd-primary {
-            --bd-violet-bg: #712cf9;
-            --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-
-            --bs-btn-font-weight: 600;
-            --bs-btn-color: var(--bs-white);
-            --bs-btn-bg: var(--bd-violet-bg);
-            --bs-btn-border-color: var(--bd-violet-bg);
-            --bs-btn-hover-color: var(--bs-white);
-            --bs-btn-hover-bg: #6528e0;
-            --bs-btn-hover-border-color: #6528e0;
-            --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-            --bs-btn-active-color: var(--bs-btn-hover-color);
-            --bs-btn-active-bg: #5a23c8;
-            --bs-btn-active-border-color: #5a23c8;
-        }
-
-        .bd-mode-toggle {
-            z-index: 1500;
-        }
-
-        .bd-mode-toggle .dropdown-menu .active .bi {
-            display: block !important;
-        }
-    </style>
-
-
-    <!-- Custom styles for this template -->
-
 </head>
 
 <body class="d-flex align-items-center py-4 bg-body-tertiary">
-
-
-
 
 
     <main class="form-signin w-100 m-auto">
@@ -123,6 +29,14 @@
                 <label for="floatingInput">fullName</label>
                 <input formControlName="fullName" type="text" class="form-control" id="floatingInput" placeholder="fullName">
                 
+                <div class="erreur" *ngIf="form.get('fullName')?.value=='' && form.get('fullName')?.touched">
+                    fullName est obligatoire
+                </div>
+                <div class="erreur"
+                    *ngIf="form.get('fullName')?.invalid && form.get('fullName')?.touched && !(form.get('fullName')?.value=='')">
+                    fullName n'est pas valide
+                </div>
+
             </div>
           
 
@@ -136,6 +50,13 @@
                 <label for="floatingInput">email</label>
                 <input formControlName="email" type="email" class="form-control" id="floatingInput" placeholder="email">
                 
+                <div class="erreur" *ngIf="form.get('email')?.value=='' && form.get('email')?.touched">
+                    email est obligatoire
+                </div>
+                <div class="erreur"
+                    *ngIf="form.get('email')?.invalid && form.get('email')?.touched && !(form.get('email')?.value=='')">
+                    email n'est pas valide
+                </div>
             </div>
 
             <div class="form-floating mb-3">
@@ -146,30 +67,34 @@
                   <option value="Work">Work</option>
                   <option value="Job seeker">Job seeker</option>
                 </select>
+
+                <div class="erreur" *ngIf="form.get('status')?.value=='' && form.get('status')?.touched">
+                    status est obligatoire
+                </div>
+               
               </div>
               
-              <div *ngIf="form.get('status')?.value === 'Work'" class="form-floating mb-3">
-                <label for="companyDropdown">Company</label>
-                <select formControlName="company" class="form-control" id="companyDropdown">
-                  <!-- Populate the options dynamically from your data source -->
-                  <option value="">Select Company</option>
-                  <option value="Company1">Company 1</option>
-                  <option value="Company2">Company 2</option>
-                  <!-- Add more options as needed -->
-                </select>
-              </div>
+              
               
 
             <div class="form-floating mb-3">
                 <label for="floatingInput">birthday</label>
                 <input formControlName="birthday" type="date" class="form-control" id="floatingInput" placeholder="birthday">
                 
+                <div class="erreur" *ngIf="form.get('birthday')?.value==null && form.get('birthday')?.touched">
+                    birthday est obligatoire
+                </div>
+              
             </div>
 
             <div class="form-floating mb-3">
                 <label for="floatingInput">adresse</label>
                 <input formControlName="adresse" type="text" class="form-control" id="floatingInput" placeholder="adresse">
                 
+                <div class="erreur" *ngIf="form.get('adresse')?.value=='' && form.get('adresse')?.touched">
+                    adresse est obligatoire
+                </div>
+
             </div>
             
             <div class="form-floating mb-3">
@@ -182,12 +107,25 @@
                 <label for="floatingPassword">Password</label>
                 <input formControlName="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
                 
+                <div class="erreur" *ngIf="form.get('password')?.value=='' && form.get('password')?.touched">
+                    password est obligatoire
+                </div>
+                <div class="erreur"
+                    *ngIf="form.get('password')?.invalid && form.get('password')?.touched && !(form.get('password')?.value=='')">
+                    password contient 3 caractéres minimum
+                </div>
             </div>
 
             <div class="form-floating mb-3">
                 <label for="floatingPassword">Retype Password</label>
                 <input formControlName="retypepassword" type="password" class="form-control" id="floatingPassword" placeholder="********">
                 
+                <div class="erreur" *ngIf="form2.get('retypepassword')?.value=='' && form2.get('retypepassword')?.touched">
+                    Retype Password is required
+                </div>
+                <div class="erreur" *ngIf="form2.get('retypepassword')?.invalid && form2.get('retypepassword')?.touched && !(form2.get('retypepassword')?.value=='')">
+                    Passwords do not match
+                </div>
             </div>
 
             <div class="d-flex justify-content-end" >

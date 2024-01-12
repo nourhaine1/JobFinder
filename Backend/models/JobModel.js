@@ -10,6 +10,12 @@ const JobModel = new Schema({
         ref: 'Company',
         required: true
       },
+
+      user_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+      },
     category:String,
     job_description:String,
 	skills:String,
@@ -17,8 +23,11 @@ const JobModel = new Schema({
 	Location:String,
 	job_type:String,
 	salaire :Number,
-	posted_date:Date,
-	application_date:Date,
+	posted_date: {
+        type: Date,
+        default: Date.now  // Utilise la fonction Date.now pour obtenir la date actuelle par défaut
+    },
+    application_date: Date,
 	vacancy:Number,
 })
 

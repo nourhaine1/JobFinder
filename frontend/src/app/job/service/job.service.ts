@@ -29,7 +29,7 @@ export class JobService {
       options));
   }
 
-  getJobById = (id : number) : Observable<Job>=> {
+  getJobById = (id : any) : Observable<Job>=> {
     return this.http.get<Job>(`${this.baseUrl}/api/jobs/getJob/${id}`)
   }
 
@@ -50,12 +50,16 @@ export class JobService {
       vacancy: job.vacancy,
     }
 
-    return(this.http.put<Job>(`${this.baseUrl}/api/jobs/${job.job_id}`, body, options));
+    return(this.http.put<Job>(`${this.baseUrl}/api/jobs/${job._id}`, body, options));
 
   }
 
   deleteJob = (id : number) : Observable<Object> =>{
     return this.http.delete(`${this.baseUrl}/api/jobs/deleteJob/${id}`)
+  }
+
+  getJobByUserId = (id : any) : Observable<Job[]>=> {
+    return this.http.get<Job[]>(`${this.baseUrl}/api/jobs/jobByUser/${id}`)
   }
 
 }

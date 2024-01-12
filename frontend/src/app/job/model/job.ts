@@ -2,7 +2,7 @@
 
 export class Job {
     constructor(
-        public job_id: string,
+        public _id: string,
       public job_name: string,
       public society_id: string,
       public category: string,
@@ -14,7 +14,8 @@ export class Job {
       public salaire: number,
       public posted_date: Date,
       public application_date: Date,
-      public vacancy: number
+      public vacancy: number,
+      public company_name: string
     ) {}
   }
   

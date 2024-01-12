@@ -28,6 +28,45 @@ const createApplication = ((req, res) => {
 })
 
 
+const doesApplicationExist = async (req, res) => {
+    try {
+      const result = await Application.findOne({ user_id: req.params.UserID, job_id: req.params.JobID });
+      
+      if (result) {
+        res.json({ exists: true });
+      } else {
+        res.json({ exists: false });
+      }
+    } catch (error) {
+      console.error('Error finding application:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  };
+
+
+  const getApplicationsByJobId = async (req, res) => {
+    try {
+      const applications = await Application.find({ job_id: req.params.JobId }).exec();
+      res.json({ applications }); // Assuming you want to send the jobs as a JSON response
+    } catch (error) {
+      console.error('Error fetching applications by job ID:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  };
+
+  const getApplicationsByUserId = async (req, res) => {
+    try {
+      const applications = await Application.find({ user_id: req.params.UserId }).exec();
+      res.json({ applications }); // Assuming you want to send the jobs as a JSON response
+    } catch (error) {
+      console.error('Error fetching applications by user ID:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  };
+
+  
+
+
 
 
 
@@ -36,5 +75,8 @@ const createApplication = ((req, res) => {
 module.exports = {
     getApplications,
     createApplication,
-    deleteApplication
+    deleteApplication,
+    doesApplicationExist,
+    getApplicationsByJobId,
+    getApplicationsByUserId
 }
