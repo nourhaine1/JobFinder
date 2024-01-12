@@ -20,7 +20,7 @@ import { JobModule } from './job/job.module';
     HomeComponent,
     AppFooterComponent,
     AppNavbarComponent,
-    
+
   ],
   imports: [
     BrowserModule,
@@ -30,7 +30,8 @@ import { JobModule } from './job/job.module';
     ReactiveFormsModule,
     CompanyModule,
     BrowserAnimationsModule,
-    JobModule
+    JobModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -16,8 +16,7 @@
 <div class="single-job-items mb-30" *ngFor="let company of getCurrentPageCompanies()">
     <div class="job-items">
         <div class="company-img">
-            <a href="#"><img [src]="company.logo.fileName" alt=""></a>
-            <img [src]="'data:' + company.logo.contentType + ';base64,' + company.logo.data" alt="Company Logo">        </div>
+            <a href="#"><img style="max-width: 100px; max-height: 100px;" [src]="company.logo" alt=""></a>
         <div class="job-tittle job-tittle2">
             <a href="#">
                 <h4>{{company.company_name}}</h4>
