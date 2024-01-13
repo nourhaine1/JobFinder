@@ -108,12 +108,11 @@
                                         }}</span></li>
                             </ul>
                             <div class="apply-btn2">
-                                <a *ngIf="!deja_apply && authenticated==true" (click)="apply(job._id)" class="btn">Apply
+                                <a *ngIf="!deja_apply " (click)="apply(job._id)" class="btn">Apply
                                     Now</a>
-                                <a *ngIf="deja_apply && authenticated==true" class="btn disabled-link" disabled>Already
+                                <a *ngIf="deja_apply" class="btn disabled-link" disabled>Already
                                     Applied</a>
-                                <a *ngIf="authenticated==false" class="btn" routerLink="/users/login">Login To Apply
-                                    </a>
+                                
                             </div>
                         </div>
                         <div class="post-details4  mb-50">
