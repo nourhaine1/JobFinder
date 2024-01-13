@@ -15,7 +15,7 @@
     <!-- Navbar top -->
     <div class="navbar-top">
         <div class="title">
-            <h1>Profile</h1>
+            <h1 style="text-align: center;">PROFILE</h1>
         </div>
 
        
@@ -24,11 +24,11 @@
 
 
     <!-- Main -->
-    <div class="main">
-        <h2>IDENTITY</h2>
+    <div class="main" >
+        <h2 style="text-align: center;">IDENTITY</h2>
         <div class="card">
             <div class="card-body">
-                <i routerLink="/users/edituser/65834a28db4f0a0fa2630eb7"  class="fa fa-pen fa-xs edit"></i>
+                <i routerLink="/users/edituser/{{userid}}"  class="fa fa-pen fa-xs edit"></i>
                 <table>
                     <tbody>
                         <div class="d-flex justify-content-center">
@@ -38,44 +38,44 @@
                             
                      
                         <tr>
-                            <td>Full Name</td>
+                            <th>Full Name</th>
                             <td>:</td>
                             <td>{{ user.fullName }}</td>
                         </tr>
                         <tr>
-                            <td>Birthday Date</td>
+                            <th>Birthday Date</th>
                             <td>:</td>
                             <td>{{ user.birthday | date:'yyyy-MM-dd' | slice:0:10 }}</td>
                         </tr>
                         <tr>
-                            <td>Status</td>
+                            <th>Status</th>
                             <td>:</td>
                             <td>{{ user.status }}</td>
                         </tr>
                         <tr>
-                            <td>Description</td>
+                            <th>Description</th>
                             <td>:</td>
                             <td>{{ user.description }}</td>
                         </tr>
                         <tr>
-                            <td>Adress</td>
+                            <th>Adress</th>
                             <td>:</td>
                             <td>{{ user.adresse }}</td>
                         </tr>
                         <tr>
-                            <td>Skills</td>
+                            <th>Skills</th>
                             <td>:</td>
                             <td>{{ user.skills }}</td>
                         </tr>
 
                         <tr>
-                            <td>Email</td>
+                            <th>Email</th>
                             <td>:</td>
                             <td>{{ user.email }}</td>
                         </tr>
 
                         <tr>
-                            <td>CV</td>
+                            <th>CV</th>
                             <td>:</td>
                             <td>{{ user.pdf }}</td>
                         </tr>
@@ -84,7 +84,7 @@
             </div>
         </div>
 
-        <h2>SOCIAL MEDIA</h2>
+        <h2 style="text-align: center;">SOCIAL MEDIA</h2>
         <div class="card">
             <div class="card-body">
                 <i class="fa fa-pen fa-xs edit"></i>

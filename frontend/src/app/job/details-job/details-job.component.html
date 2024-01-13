@@ -1,34 +1,36 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-         <title>Job board HTML-5 Template </title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="manifest" href="site.webmanifest">
-		<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
-		
-   </head>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Job board HTML-5 Template </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
-   <body>
-   
+
+</head>
+
+<body>
+
     <main *ngIf="job && company">
 
         <!-- Hero Area Start-->
-        <div class="slider-area"  >
-        <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="assets/img/hero/about.jpg">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="hero-cap text-center">
-                            <h2>{{job.job_name}}</h2>
+        <div class="slider-area">
+            <div class="single-slider section-overly slider-height2 d-flex align-items-center"
+                data-background="assets/img/hero/about.jpg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="hero-cap text-center">
+                                <h2>{{job.job_name}}</h2>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
         <!-- Hero Area End -->
         <!-- job post company Start -->
@@ -55,8 +57,8 @@
                                 </div>
                             </div>
                         </div>
-                          <!-- job single End -->
-                       
+                        <!-- job single End -->
+
                         <div class="job-post-details">
                             <div class="post-details1 mb-50">
                                 <!-- Small Section Tittle -->
@@ -66,24 +68,24 @@
                                 <p>{{job.job_description}}</p>
                             </div>
                             <div class="post-details2  mb-50">
-                                 <!-- Small Section Tittle -->
+                                <!-- Small Section Tittle -->
                                 <div class="small-section-tittle">
                                     <h4>Required Knowledge, Skills, and Abilities</h4>
                                 </div>
-                               <ul>
-                                   <li>{{job.skills}}</li>
-                                 
-                               </ul>
+                                <ul>
+                                    <li>{{job.skills}}</li>
+
+                                </ul>
                             </div>
                             <div class="post-details2  mb-50">
-                                 <!-- Small Section Tittle -->
+                                <!-- Small Section Tittle -->
                                 <div class="small-section-tittle">
                                     <h4>Education + Experience</h4>
                                 </div>
-                               <ul>
-                                   <li>{{job.Experiences_Education}}</li>
-                                   
-                               </ul>
+                                <ul>
+                                    <li>{{job.Experiences_Education}}</li>
+
+                                </ul>
                             </div>
                         </div>
 
@@ -92,36 +94,42 @@
                     <div class="col-xl-4 col-lg-4">
                         <div class="post-details3  mb-50">
                             <!-- Small Section Tittle -->
-                           <div class="small-section-tittle">
-                               <h4>Job Overview</h4>
-                           </div>
-                          <ul>
-                              <li>Posted date : <span> {{job.posted_date | date:'yyyy-MM-dd' | slice:0:10 }}</span></li>
-                              <li>Location : <span>{{job.Location}}</span></li>
-                              <li>Vacancy : <span>{{job.vacancy}}</span></li>
-                              <li>Job nature : <span>{{job.job_type}}</span></li>
-                              <li>Salary :  <span>{{job.salaire}} DT/Month</span></li>
-                              <li>Application date : <span>{{job.application_date | date:'yyyy-MM-dd' | slice:0:10 }}</span></li>
-                          </ul>
-                         <div class="apply-btn2">
-                            <a *ngIf="!deja_apply" (click)="apply(job._id)" class="btn">Apply Now</a>
-                            <a *ngIf="deja_apply" class="btn disabled-link" disabled>Already Applied</a>
-                                                    </div>
-                       </div>
+                            <div class="small-section-tittle">
+                                <h4>Job Overview</h4>
+                            </div>
+                            <ul>
+                                <li>Posted date : <span> {{job.posted_date | date:'yyyy-MM-dd' | slice:0:10 }}</span>
+                                </li>
+                                <li>Location : <span>{{job.Location}}</span></li>
+                                <li>Vacancy : <span>{{job.vacancy}}</span></li>
+                                <li>Job nature : <span>{{job.job_type}}</span></li>
+                                <li>Salary : <span>{{job.salaire}} DT/Month</span></li>
+                                <li>Application date : <span>{{job.application_date | date:'yyyy-MM-dd' | slice:0:10
+                                        }}</span></li>
+                            </ul>
+                            <div class="apply-btn2">
+                                <a *ngIf="!deja_apply && authenticated==true" (click)="apply(job._id)" class="btn">Apply
+                                    Now</a>
+                                <a *ngIf="deja_apply && authenticated==true" class="btn disabled-link" disabled>Already
+                                    Applied</a>
+                                <a *ngIf="authenticated==false" class="btn" routerLink="/users/login">Login To Apply
+                                    </a>
+                            </div>
+                        </div>
                         <div class="post-details4  mb-50">
                             <!-- Small Section Tittle -->
-                           <div class="small-section-tittle">
-                               <h4>Company Information</h4>
-                           </div>
-                              <span>{{company.company_name}}</span>
-                              <p>{{company.description}}</p>
+                            <div class="small-section-tittle">
+                                <h4>Company Information</h4>
+                            </div>
+                            <span>{{company.company_name}}</span>
+                            <p>{{company.description}}</p>
                             <ul>
                                 <li>Name: <span>{{company.company_name}}</span></li>
                                 <li>Web : <span> {{company.website}}</span></li>
                                 <li>Email: <span>{{company.email}}</span></li>
                                 <li>Location: <span>{{company.location}}</span></li>
                             </ul>
-                       </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -131,6 +139,7 @@
     </main>
 
 
-        
-    </body>
+
+</body>
+
 </html>
