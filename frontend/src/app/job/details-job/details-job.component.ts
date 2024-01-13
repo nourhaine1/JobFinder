@@ -7,6 +7,7 @@ import { CompanyService } from 'src/app/company/service/company.service';
 import { ApplicationService } from 'src/app/application/service/application.service';
 import Swal from 'sweetalert2';
 import { UserService } from 'src/app/user/service/user.service';
+import { Emitters } from 'src/app/emitters/emitters';
 
 @Component({
   selector: 'app-details-job',
@@ -14,7 +15,7 @@ import { UserService } from 'src/app/user/service/user.service';
   styleUrls: ['./details-job.component.css']
 })
 export class DetailsJobComponent implements OnInit {
-
+  authenticated = false
   job?: Job;
   company?: Company;
   job_id: any;
@@ -30,6 +31,15 @@ export class DetailsJobComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log(this.authenticated)
+    Emitters.authEmitter.subscribe(
+      (auth: boolean) => {
+        this.authenticated = auth
+        console.log(this.authenticated)
+
+      }
+    )
+
     this.user_id = localStorage.getItem('user_id');
     this.job_id = this.activatedRoute.snapshot.params['id'];
 
